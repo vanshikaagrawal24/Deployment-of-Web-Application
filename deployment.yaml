@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio
+spec:
+  replicas: 3  # Set replicas to 3
+  selector:
+    matchLabels:
+      app: portfolio
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+      - name: portfolio
+        image: portfolio:v1  # Use portfolio:v1 as the Docker image
+        resources:
+          requests:
+            cpu: "100m"      # Set CPU request
+            memory: "128Mi"  # Set memory request
+          limits:
+            cpu: "200m"      # Set CPU limit
+            memory: "256Mi"  # Set memory limit
+        ports:
+        - containerPort: 3000
